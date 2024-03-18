@@ -1,0 +1,35 @@
+body{
+    display: flex;
+}
+#left{
+    width: 50vw;
+    /* background-color: red; */
+
+}
+#right{
+    width: 50vw;
+    /* background-color: blue; */
+}
+
+input{
+width: 95%;
+
+}
+
+table{
+    width: 95%;
+    margin-left: 5%;
+    background-color: #eeeeee;
+}
+#getbutton{
+    display:flex;
+}
+td{
+    
+    text-align: center;
+    
+}
+
+#loginPane{
+background-color: #dddddd
+}
