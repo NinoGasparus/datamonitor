@@ -101,7 +101,7 @@ let aliveTokens = [
 
 app.post('/add',(req,res) =>{
     try{
-        console.log("prejel sporočilo");
+        console.log("data recieved");
         
         try{
             if(req.body.Temperature && req.body.Quality && req.body.Humidity && req.body.Date && req.body.Date && req.body.Time){
@@ -135,15 +135,15 @@ app.post('/add',(req,res) =>{
 
             }else{
                 
-                goto(nepravilno);
+                goto(error);
             }
         }catch{
-            nepravilno:
-           // console.log("nepopolna zahteva")
-            res.status(500).send("Nepravilna zahteva")
+            error:
+         
+            res.status(500).send("bad request")
         }   
     }catch{
-        res.status(500).send("server ma težave")
+        res.status(500).send("server issue")
     }
 })
 
@@ -153,7 +153,7 @@ app.post('/add',(req,res) =>{
 app.post('/get', (req,res) =>{
   try{
    // console.log(req)
-    console.log("someone greppin")
+    console.log("data request recieved")
         try{
            // console.log(database)
             if(req.body.amount && req.body.categories && req.body.amount >= 1){
@@ -221,7 +221,7 @@ app.post('/get', (req,res) =>{
            goto(nepravilno);
         }
     }catch{
-        res.status(500).send("server ma težave")
+        res.status(500).send("server issue")
     }
 
 })
@@ -307,7 +307,7 @@ app.post('/getaverages', (req, res) =>{
 
         res.status(200).send(resposnse).json();
     }catch{
-        res.status(500).send("server ma težave");
+        res.status(500).send("server issues");
     }
 
 

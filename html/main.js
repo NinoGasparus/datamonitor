@@ -1,4 +1,4 @@
-const IP = "http://127.0.0.1:420/" //ip to where all fetches will go
+const IP = "http://127.0.0.1:420/"
 
 document.addEventListener('DOMContentLoaded', function() {
     const loginButton = document.getElementById('login-button');
@@ -17,13 +17,11 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
   });
-//takes care of the display of time
+
 setInterval(() => {
     let timer = new Date()
     let composeTime ="";
 
-    //idk if y dont want month and date remove next few code lines idc rlly
-    //converts numerical month to WORD
     switch (timer.getMonth()){
         case 0: composeTime+="Jan";break;
         case 1: composeTime+="Feb";break;
@@ -39,10 +37,10 @@ setInterval(() => {
         case 11:composeTime+="Dec";break;
     }
 
-    //get date returns day of the month in numbers
+   
     composeTime+=" " + timer.getDate()
     
-    //adds the suffix if the number is appropriate for it
+   
     switch(timer.getDate()){
         case 1: composeTime+="st";break;
         case 2: composeTime+="nd";break;
@@ -50,7 +48,7 @@ setInterval(() => {
         default: composeTime+="th";break;
     }
 
-    //manifests together the current time separated by colons :
+  
 
     time = "";
     
@@ -80,15 +78,12 @@ setInterval(() => {
     }
 
 
-    //for the based peuwple, pls dont remuwue, owly cawses slight lagg on luw end pc's
-    time+="." + timer.getMilliseconds();
+   
 
-//writes the crated date and time into the html updates every 1s
     document.getElementById("current_time").innerText =composeTime;
     document.getElementById("current_time").innerHTML +="<br>" + time;
 }, 1);
 
-//takes care of updating statistics (top 3 values) every 1s
 setInterval(() => {
  try {
   fetch(IP+"getmeasurments",{
@@ -97,10 +92,10 @@ setInterval(() => {
         if(response.ok){
             return response.json()
         }else{
-            //your bad cant help
+         
         }
     }).then((data)=>{
-      //top 3 measurments big
+
 
         let temp = document.getElementById("b1");
         let humi = document.getElementById("b2");
@@ -111,14 +106,14 @@ setInterval(() => {
         airq.innerText = data.airq;
         
         if(data.temp >= 50){
-        //  console.log("shown fans")
+        
          let fans =  document.getElementsByClassName("alarmFans");
-         //console.log(fans);
+  
           for( let i = 0; i < fans.length ; i++){
             fans[i].style.display = "block"
           }
         }else{
-         // console.log("hidden the fans");
+
           let fans =  document.getElementsByClassName("alarmFans");
           for( let i = 0; i < fans.length ; i++){
             fans[i].style.display = "none"
@@ -132,9 +127,6 @@ setInterval(() => {
   }
 }, 1000);
 
-//updates the statistike once per 5min
-//NOT COMPLETE ONLY WORKS FOR ALL TIME 
-//TODAY AND YESTERDAY HAS TO BE DONE ON THE SERVER FIRST IT DOESNT KNOW THAT yet*********
 
 setInterval(() => {
   try{ 
@@ -206,63 +198,3 @@ setInterval(() => {
   }
 }, 1000);
 
-
-//dont delete its for id references... 
-/*  <tbody>
-              <tr>
-                <th scope="row">Average Temperature</th>
-                <td><span id="allTimeTempAverage"></span>°C</td>
-                <td><span id="yavgtemp"></span>°C</td>
-                <td><span id="tavgtemp"></span>°C</td>
-              </tr>
-              <tr>
-                <th scope="row">Average Humidity</th>
-                <td><span id="allTimeHumiAverage"></span>%</td>
-                <td><span id="yavghumi"></span>%</td>
-                <td><span id="tavghumi"></span>%</td>
-              </tr>
-              <tr>
-                <th scope="row">Average Air Quality</th>
-                <td><span id="allTimeAirqAverage"></span>%</td>
-                <td><span id="yavghumi"></span>%</td>
-                <td><span id="tavghumi"></span>%</td>
-              </tr>
-              <tr>
-                <th scope="row">Temperature Highs</th>
-                <td><span id="allTimeTempHigh"></span>°C</td>
-                <td><span id="ymaxtemp"></span>°C</td>
-                <td><span id="tmaxtemp"></span>°C</td>
-              </tr>
-              <tr>
-                <th scope="row">Temperature Lows</th>
-                <td><span id="allTimeTempLow"></span>°C</td>
-                <td><span id="ymintemp"></span>°C</td>
-                <td><span id="tmintemp"></span>°C</td>
-              </tr>
-              <tr>
-                <th scope="row">Humidity Highs</th>
-                <td><span id="allTimeHumiHigh"></span>%</td>
-                <td><span id="ymaxhumi"></span>%</td>
-                <td><span id="tmaxhumi"></span>%</td>
-              </tr>
-              <tr>
-                <th scope="row">Humidity Lows</th>
-                <td><span id="allTimeHumiLow"></span>%</td>
-                <td><span id="yminhumi"></span>%</td>
-                <td><span id="tminhumi"></span>%</td>
-              </tr>
-              <tr>
-                <th scope="row">Air quality Highs</th>
-                <td><span id="allTimeAirqHigh"></span>%</td>
-                <td><span id="ymaxhumi"></span>%</td>
-                <td><span id="tmaxhumi"></span>%</td>
-              </tr>
-              <tr>
-                <th scope="row">Air quality Lows</th>
-                <td><span id="allTimeAirqLow"></span>%</td>
-                <td><span id="yminhumi"></span>%</td>
-                <td><span id="tminhumi"></span>%</td>
-              </tr>
-            </tbody>
-
-            */
