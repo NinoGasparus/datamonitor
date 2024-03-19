@@ -1,12 +1,12 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "strežnik",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "nodemon index.js"
   },
-  "author": "aldin nino",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
