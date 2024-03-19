@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      setInterval(function () {
+        //   console.log("idk aoijhasdčlfih");
+        fetch("http://127.0.0.1:420/getaverages", {
+          method: "POST",
+        })
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              console.log("skill issue");
+            }
+          })
+          .then((data) => {
+            //  console.log(data);
+            document.getElementById("temp").innerText =
+              "average temp" + data.temps[0];
+
+            document.getElementById("temp2").innerText =
+              "temp high" + data.temps[1];
+
+            document.getElementById("temp3").innerText =
+              "temp low" + data.temps[2];
+          });
+      }, 1000);
+    </script>
+  </head>
+  <body>
+    <button onclick="test()">ssss</button>
+
+    <div id="temp"></div>
+    <div id="temp2"></div>
+    <div id="temp3"></div>
+  </body>
+</html>
+l
