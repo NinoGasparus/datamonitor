@@ -75,17 +75,18 @@ tr:nth-child(odd) {
     margin-bottom: 5vh;
 }
 #b1, #b2, #b3 {
-    background-color: red;
+   font-size:x-large;
 }
+
 .lead   {
     margin-top:3vh;
-    background-color: red;
+   
     display: flex;
     justify-content: center;
     
 }
 .lead > *{
-    background-color: rgba(0, 255, 179, 0.772);
+
     width: 33%;
 }
 
@@ -183,4 +184,25 @@ tr:nth-child(odd) {
   font-size: 2rem;
   color: var(--title-color);
   cursor: pointer;
+}
+
+#dataranges{
+  margin-top:20px;
+  background-color: red;
+  display: flex;
+  
+}
+#dataranges button{
+  background-color: #333333;
+  color: #ffffff;
+  font-weight: bold;
+  border:none;
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 12.5%;
+}
+#dataranges button:hover{
+  color: #333333;
+  background-color: #ffffff;
+  
 }

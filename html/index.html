@@ -18,6 +18,11 @@
 
     <script src="main.js"></script>
     <script src="second.js"></script>
+
+    <!--clock on top of the page-->
+    <script src="clock.js"></script>
+    <!--functions that update statistic and realtime measurments-->
+    <script src="dataUpdating.js"></script>
   </head>
 
   <body>
@@ -58,6 +63,7 @@
         </div>
       </div>
     </nav>
+
     <div class="login" id="login-content">
       <form class="login__form">
         <h3 class="login__title">Log In</h3>
@@ -132,6 +138,26 @@
             </div>
             <div>
               <canvas id="myChart"></canvas>
+              <div id="dataranges">
+                <button onclick="chartHandler(this)" id="timespan1">10s</button>
+                <button onclick="chartHandler(this)" id="timespan2">
+                  1min
+                </button>
+                <button onclick="chartHandler(this)" id="timespan3">
+                  30min
+                </button>
+                <button onclick="chartHandler(this)" id="timespan4">1h</button>
+                <button onclick="chartHandler(this)" id="timespan5">24h</button>
+                <button onclick="chartHandler(this)" id="timespan6">
+                  1 Week
+                </button>
+                <button onclick="chartHandler(this)" id="timespan7">
+                  1 Month
+                </button>
+                <button onclick="chartHandler(this)" id="timespan8">
+                  All time
+                </button>
+              </div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script src="charts.js"></script>
