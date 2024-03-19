@@ -46,7 +46,7 @@ new Chart(ctx, {
       y2: {
         position: "none",
         grid: {
-          drawOnChartArea: false, // only want the grid lines for one axis to show up
+          drawOnChartArea: false, // only want the grid lines for one axis to show upaaaaaaa
         },
       },
       y3:{
