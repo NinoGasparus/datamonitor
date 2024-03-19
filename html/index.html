@@ -6,31 +6,18 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <meta name="description" content="" />
 
-    <title>Home123</title>
+    <title>Home</title>
 
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
     <link href="main.css" rel="stylesheet" />
-
     <link
-      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
+      rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <!--js file-->
     <script src="main.js"></script>
     <script src="second.js"></script>
-    <!-- hardcoded scripts ???? bro be referecing his own OneDrive, tbh who still uses this -->
-    <script src="C:\Users\pirat\OneDrive\Desktop\Nigga\server\index.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="charts.js"></script>
-    <style>
-      /*my brother in christ use a .css file*/
-    </style>
   </head>
 
   <body>
@@ -111,7 +98,6 @@
       <div class="row">
         <div class="col-lg-12 text-center">
           <h1 class="mt-5">Home</h1>
-          <!--values C temp, %humi,... werent actually inside the spans..., time separated-->
           <span id="current_time">12:33:33</span>
           <p class="lead">
             <span id="current_temp">°C Temp,</span>
@@ -144,11 +130,13 @@
             <div class="gif-right">
               <img src="Assets/fan.gif" alt="Right GIF" class="alarmFans" />
             </div>
-            <!-- we will pretend that never was-->
-            <canvas id="graph"></canvas>
+            <div>
+              <canvas id="myChart"></canvas>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="charts.js"></script>
           </div>
-          <!-- something -> statistics-->
-          <h5>Statistike</h5>
+          <h5>Statistics</h5>
           <p>
             <span id="api_temp"></span>°C, <span id="api_humi"></span>%
             Humidity. Highs of <span id="api_max"></span>°C and lows of
