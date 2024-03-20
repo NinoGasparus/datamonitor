@@ -1,2 +1,8 @@
 
 POST http://127.0.0.1:420/getaverages
+
+
+###
+
+POST http://127.0.0.1:6969/readfile
+

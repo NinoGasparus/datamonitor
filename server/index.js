@@ -5,7 +5,7 @@ const cors = require('cors');
 app.use(cors());
 
 
-app.listen(420, onStartDo = () =>{
+app.listen(6969, onStartDo = () =>{
     //fills the DB with junk data
     let appender = {
         Temperature: undefined,
@@ -280,7 +280,7 @@ function makeHash(length) {
 
 app.post('/getaverages', (req, res) =>{
    try{
-    console.log("someone requested average data")
+  //  console.log("someone requested average data")
 
     //  averages.temperature = Math.floor(Math.random() * 100);
     //  highs.temperature = Math.floor(Math.random()*100);
@@ -320,7 +320,7 @@ function callSQL(query){
 }
 
 app.post('/getmeasurments',(req,res) =>{
-    console.log("someone requested measurments 3x")
+   // console.log("someone requested measurments 3x")
     let sample = {
         temp: "database error",
         humi: "database error",
@@ -341,4 +341,78 @@ app.post('/getmeasurments',(req,res) =>{
     }
     database.push(appender);
     res.status(200).send(sample).json()
+})
+
+
+const fs = require('fs');
+
+// Define the directory or file you want to watch
+const path = './nekaj.json';
+
+// Watch for changes in the directory or file
+fs.watch(path, (eventType, filename) => {
+    console.log(`Event type: ${eventType}`);
+    if (filename) {
+        console.log(`File affected: ${filename}`);
+    } else {
+        console.log('No specific file affected');
+    }
+});
+
+
+const mysql = require('mysql');
+const { error } = require('console');
+
+// Create a connection to the MySQL database
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user:'root',
+    password:'password'
+});
+
+// Connect to the database
+connection.connect((err) => {
+    if (err) {
+        console.error('Error connecting to MySQL database: ' + err.stack);
+        return;
+    }
+    console.log('Connected to MySQL database as ID ' + connection.threadId);
+});
+    connection.query('USE test', (error, resoults, fields) =>{
+        if(!error){
+            console.log("should work");
+        }
+    });
+
+
+    connection.query('SELECT * from ljudje',(error, resoults) =>{
+        if(!error){
+            try{
+            console.log(resoults[1].ime);
+            }catch{
+                console.log("i do not have what you seek");
+            }
+        }else{
+            console.log(error)
+        }
+    } );
+    
+    
+    // Close the connection
+    connection.end((err) => {
+        if (err) {
+            console.error('Error closing connection: ' + err.stack);
+            return;
+        }
+        console.log('Connection closed');
+    });
+
+
+
+app.post('/readfile', (req,res)=>{
+let x = require('./nekaj.json');
+
+
+
+    res.status(404).send(x).json();
 })
