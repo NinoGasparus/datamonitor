@@ -1,10 +1,18 @@
-
+CREATE DATABASE datamonitor;
 USE datamonitor;
 
 CREATE TABLE users(
-	username nvarchar(20) not null,
-	password nvarchar(200) not null,
-	id int PRIMARY KEY
+        username nvarchar(20) not null,
+        password nvarchar(200) not null,
+        id int PRIMARY KEY
+);
+
+CREATE TABLE messages(
+        content TEXT,
+        recipient INT,
+        read_status BIT,
+        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP(),
+        FOREIGN KEY (recipient) REFERENCES users(id)
 );
 
 CREATE TABLE data (
@@ -34,7 +42,4 @@ CREATE TABLE data (
     date NVARCHAR(255),
     time NVARCHAR(20)
 );
-
-
-
 
