@@ -2,10 +2,10 @@ function getAverages(req, res){
     try {
          console.log("someone requested average data")
 
-         averages.temperature = Math.floor(Math.random() * 100);
-         highs.temperature = Math.floor(Math.random()*100);
-          lows.temperature = Math.floor(Math.random()*100);
-          
+        //  averages.temperature = Math.floor(Math.random() * 100);
+        //  highs.temperature = Math.floor(Math.random()*100);
+        //   lows.temperature = Math.floor(Math.random()*100);
+
         let resposnse = {
             temps: [
                 averages.temperature,

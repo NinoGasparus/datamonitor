@@ -1,7 +1,9 @@
 {
-    "json test": "test",
-    "json2": 123
+    "Temperature": 100,
+    "Quality": 1,
+    "Humidity": 999,
+    "Date": "danes",
+    "Time": "sekundo nazaj"
+    
 }
-
-
 
