@@ -1,3 +1,4 @@
+
 const ctx = document.getElementById("myChart");
 const labels = [
   "January",
@@ -8,12 +9,17 @@ const labels = [
   "June",
   "July",
 ];
+let tmpData =getData();
+
+//0, 200, 20, 60, 60, 120, NaN, 60, 60, 125, 105, 110, 170];
+
+
 let data = {
   labels: labels,
   datasets: [
     {
       label: "Temperatures", 
-      data: [0, 20, 20, 60, 60, 120, 0, 180, 120, 125, 105, 110, 170],
+      data: tmpData,
       fill: false,
       borderColor: "#E3655B",
       tension: 0.1,
@@ -66,3 +72,28 @@ function chartHandler(sender){
   }
 }
 
+function getData(){
+let rv  = [];
+  console.log("idk");
+  
+  fetch(IP+ "graph", {
+    method: "POST",
+}).then((response) => {
+  if(response.ok){
+    console.log("ok");
+    return response.json();
+  }else{
+    console.log("bad")
+  }
+}).then((data) => {
+    for(let i = 0; i < data.length; i+=10){
+      rv.push(data[i].Temperature[0]);
+    }
+    console.log(rv)
+    return rv;
+}).catch((error) => {
+    console.error('Login error:', error);
+});
+  console.log(rv)
+  return rv;
+}

@@ -6,7 +6,9 @@ app.use(cors());
 const mysql = require('mysql');
 const { error } = require('console');
 const fs = require('fs');
-
+   
+   
+const seedrandom = require('seedrandom')
 // import pkg from 'express';
 // const {express} = pkg;
 // const app = pkg;
@@ -22,19 +24,19 @@ const getMeasurments = require('./endpoints/getMeasurments.js').getMeasurments;
 const add = require('./endpoints/add.js').add;
 let path = './nekaj.json'
 
-let averages = {
+global.averages = {
     temperature: "avgTemp",
     quality: "avgQual",
     humidity: "avgHumi",
 }
 
-let lows = {
+global.lows = {
     temperature: "tempLow",
     quality: "qualLow",
     humidity: "humiLow"
 }
 
-let highs = {
+global.highs = {
     temperature: "tempHigh",
     quality: "qualHigh",
     humidity: "humiHigh"
@@ -193,13 +195,18 @@ app.post('/readfile', (req, res) => {
 })
 
 app.post('/graph', (req,res)=>{
-    
+    res.status(200).send(database).json();
 })
 
 
 function generateData(base, variance, size) {
     const data = [];
     for (let i = 0; i < size; i++) {
+        // Generate a random seed for each iteration
+        const seed = Math.random().toString();
+        // Set the random seed
+        seedrandom(seed);
+        
         // Generate a random number between -variance/2 and variance/2
         const randomDelta = (Math.random() - 0.5) * variance;
         // Add the random delta to the base value

@@ -155,7 +155,7 @@ function login() {
         password: document.getElementById("password").value
     };
 
-    fetch("http://127.0.0.1:420/login", {
+    fetch(IP+ "login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
