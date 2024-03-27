@@ -1,9 +1,1 @@
-{
-    "Temperature": 100,
-    "Quality": 1,
-    "Humidity": 999,
-    "Date": "danes",
-    "Time": "sekundo nazaj"
-    
-}
-
+{"stop":true}
