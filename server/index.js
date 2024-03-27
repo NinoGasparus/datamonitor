@@ -22,7 +22,11 @@ const get   = require('./endpoints/get.js').get;
 const getAverages = require('./endpoints/getAverages.js').getAverages;
 const getMeasurments = require('./endpoints/getMeasurments.js').getMeasurments;
 const add = require('./endpoints/add.js').add;
-let path = '/home/pi/Desktop/sensor.json'
+const alarmOFF = require('./endpoints/alarm.js').alarmOFF;
+
+
+global.path = './nekaj.json';
+//let path = '/home/pi/Desktop/sensor.json'
 
 global.averages = {
     temperature: "avgTemp",
@@ -90,7 +94,9 @@ app.listen(6969, onstartdo());
 
 
 
-
+app.post('/alarmOFF',(req,res) =>{
+    alarmOFF();
+})
 
 app.post('/add', (req, res) => {
   add(req,res);
