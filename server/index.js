@@ -125,20 +125,43 @@ function callSQL(query) {
 
 
 
-// Define the directory or file you want to watch
 
 
-// Watch for changes in the directory or file
+let timeout = 100;
+//Observe file for change
 fs.watch(path, (eventType, filename) => {
-    console.log(`Event type: ${eventType}`);
+//    console.log(`Event type: ${eventType}`);
     if (filename) {
-        console.log(`File affected: ${filename}`);
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+                let x = require(path);
+
+             console.log(x);
+            if(x.Temperature && x.Quality && x.Humidity && x.Date && x.Time){
+                let dataBlock = {
+                    Temperature: x.Temperature,
+                    Quality: x.Quality,
+                    Humidity: x.Humidity,
+                    Date: x.Date,
+                    Time: x.Time
+
+                    
+                }
+
+                database.push(dataBlock);
+                console.log("got some data");
+                delete require.cache[require.resolve(path)];
+
+            }else{
+                        console.log("inccoretd datafortmata2")
+            }
+                
+        }, 100); 
+
     } else {
-        console.log('No specific file affected');
+        console.log('No');
     }
 });
-
-
 
 // Create a connection to the MySQL database
 const connection = mysql.createConnection({
