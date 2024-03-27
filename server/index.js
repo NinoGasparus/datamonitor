@@ -22,7 +22,7 @@ const get   = require('./endpoints/get.js').get;
 const getAverages = require('./endpoints/getAverages.js').getAverages;
 const getMeasurments = require('./endpoints/getMeasurments.js').getMeasurments;
 const add = require('./endpoints/add.js').add;
-let path = './nekaj.json'
+let path = '/home/pi/Desktop/nekaj.json'
 
 global.averages = {
     temperature: "avgTemp",
@@ -137,11 +137,11 @@ fs.watch(path, (eventType, filename) => {
                 let x = require(path);
 
              console.log(x);
-            if(x.Temperature && x.Quality && x.Humidity && x.Date && x.Time){
+            //if(x.Temperature && x.Quality && x.Humidity && x.Date && x.Time){
                 let dataBlock = {
-                    Temperature: x.Temperature,
-                    Quality: x.Quality,
-                    Humidity: x.Humidity,
+                    Temperature: x.temp,
+                    Quality: x.CO,
+                    Humidity: x.AirQuality,
                     Date: x.Date,
                     Time: x.Time
 
@@ -152,9 +152,9 @@ fs.watch(path, (eventType, filename) => {
                 console.log("got some data");
                 delete require.cache[require.resolve(path)];
 
-            }else{
-                        console.log("inccoretd datafortmata2")
-            }
+          //  }else{
+            //            console.log("inccoretd datafortmata2")
+           // }
                 
         }, 100); 
 
@@ -163,49 +163,49 @@ fs.watch(path, (eventType, filename) => {
     }
 });
 
-// Create a connection to the MySQL database
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password'
-});
+// // Create a connection to the MySQL database
+// const connection = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'password'
+// });
 
-// Connect to the database
-connection.connect((err) => {
-    if (err) {
-        console.error('Error connecting to MySQL database: ' + err.stack);
-        return;
-    }
-    console.log('Connected to MySQL database as ID ' + connection.threadId);
-});
-connection.query('USE test', (error, resoults, fields) => {
-    if (!error) {
-        console.log("should work");
-    }
-});
-
-
-connection.query('SELECT * from ljudje', (error, resoults) => {
-    if (!error) {
-        try {
-            console.log(resoults[1].ime);
-        } catch {
-            console.log("i do not have what you seek");
-        }
-    } else {
-        console.log(error)
-    }
-});
+// // Connect to the database
+// connection.connect((err) => {
+//     if (err) {
+//         console.error('Error connecting to MySQL database: ' + err.stack);
+//         return;
+//     }
+//     console.log('Connected to MySQL database as ID ' + connection.threadId);
+// });
+// connection.query('USE test', (error, resoults, fields) => {
+//     if (!error) {
+//         console.log("should work");
+//     }
+// });
 
 
-// Close the connection
-connection.end((err) => {
-    if (err) {
-        console.error('Error closing connection: ' + err.stack);
-        return;
-    }
-    console.log('Connection closed');
-});
+// connection.query('SELECT * from ljudje', (error, resoults) => {
+//     if (!error) {
+//         try {
+//             console.log(resoults[1].ime);
+//         } catch {
+//             console.log("i do not have what you seek");
+//         }
+//     } else {
+//         console.log(error)
+//     }
+// });
+
+
+// // Close the connection
+// connection.end((err) => {
+//     if (err) {
+//         console.error('Error closing connection: ' + err.stack);
+//         return;
+//     }
+//     console.log('Connection closed');
+// });
 
 
 
