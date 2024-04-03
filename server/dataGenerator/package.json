@@ -1,0 +1,11 @@
+{
+  "name": "datagenerator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "generator.js",
+  "scripts": {
+    "test": "clear && nodemon generator.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
