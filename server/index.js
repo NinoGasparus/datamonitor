@@ -25,7 +25,7 @@ const add = require('./endpoints/add.js').add;
 const alarmOFF = require('./endpoints/alarm.js').alarmOFF;
 
 
-global.path = './nekaj.json';
+global.path  = "./data.json";
 //let path = '/home/pi/Desktop/sensor.json'
 
 global.averages = {
@@ -90,7 +90,7 @@ function onstartdo() {
 
 }
 
-app.listen(6969, onstartdo());
+app.listen(6969)//donstartdo());
 
 
 

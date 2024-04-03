@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "clear && nodemon --ignore ./nekaj.json index.js"
+    "test": "clear && nodemon --ignore ./data.json index.js"
   },
   "author": "",
   "license": "ISC",

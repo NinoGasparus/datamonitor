@@ -1,8 +1,15 @@
 
-POST http://127.0.0.1:420/getaverages
+POST http://127.0.0.1:6969/getaverages
 
 
 ###
 
 POST http://127.0.0.1:6969/readfile
 
+###
+
+POST http://127.0.0.1:6969/getmeasurments
+###
+
+POST http://127.0.0.1:6969/graph
+{"temp":999.678522065881907,"CO":78.56142615060398,"AirQuality":80.46543228911727,"Date":"2024-04-03","Time":"11:24:36"}
