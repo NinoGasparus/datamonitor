@@ -1,5 +1,5 @@
 server/node_modules/
 node_modules/
 *.log
-server/datapProcessor
+server/dataProcessor
 temp/
