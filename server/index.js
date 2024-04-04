@@ -142,7 +142,7 @@ fs.watch(path, (eventType, filename) => {
         timeout = setTimeout(() => {
                 let x = require(path);
 
-             console.log(x);
+             //console.log(x);
             //if(x.Temperature && x.Quality && x.Humidity && x.Date && x.Time){
                 let dataBlock = {
                     Temperature: x.temp,

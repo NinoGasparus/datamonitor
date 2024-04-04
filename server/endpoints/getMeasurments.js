@@ -1,4 +1,8 @@
 function getMeasurments(req,res){
+
+    if(req.token){
+        console.log(req.token);
+    }
     // console.log("someone requested measurments 3x")
     let sample = {
         temp: "database error",
