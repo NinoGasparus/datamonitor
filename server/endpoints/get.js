@@ -1,7 +1,7 @@
 function get(req, res){
     try {
     // console.log(req)
-    console.log("data request recieved")
+  
     try {
         // console.log(database)
         if (req.body.amount && req.body.categories && req.body.amount >= 1) {

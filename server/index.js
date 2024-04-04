@@ -4,7 +4,7 @@ app.use(express.json());
 const cors = require('cors');
 app.use(cors());
 const mysql = require('mysql');
-const { error } = require('console');
+const { error, Console } = require('console');
 const fs = require('fs');
    
    
@@ -28,22 +28,47 @@ const alarmOFF = require('./endpoints/alarm.js').alarmOFF;
 global.path  = "./data.json";
 //let path = '/home/pi/Desktop/sensor.json'
 
+// global.averages = {
+//     temperature: 25,
+//     quality: 75,
+//     humidity: 75,
+// }
+
+// global.lows = {
+//     temperature: undefined,
+//     quality: undefined,
+//     humidity: undefined
+// }
+
+// global.highs = {
+//     temperature: undefined,
+//     quality: undefined,
+//     humidity: undefined
+// }
+
+
+
 global.averages = {
     temperature: "avgTemp",
     quality: "avgQual",
-    humidity: "avgHumi",
+    humidity: "avgHum",
 }
 
 global.lows = {
-    temperature: "tempLow",
-    quality: "qualLow",
-    humidity: "humiLow"
+    temperature: undefined,
+    quality: undefined,
+    humidity: undefined
 }
 
 global.highs = {
-    temperature: "tempHigh",
-    quality: "qualHigh",
-    humidity: "humiHigh"
+    temperature: undefined,
+    quality: undefined,
+    humidity: undefined
+}
+global.sums = {
+    temperature: 0,
+    quality: 0,
+    humidity: 0
 }
 
 global.database = [
@@ -75,9 +100,9 @@ function onstartdo() {
     }
     
     for(let i =0; i < 100; i++){
-        appender.Temperature = generateData(50,5,1);
-        appender.Quality = generateData(50,5,1);
-        appender.Humidity = generateData(50,5,1);
+        appender.Temperature = 25;//generateData(50,5,1);
+        appender.Quality = 75;// generateData(50,5,1);
+        appender.Humidity = 75;//generateData(50,5,1);
         appender.Date = "NAN";
         appender.Time = "TODAYYYY"
         database.push(appender);
@@ -90,7 +115,7 @@ function onstartdo() {
 
 }
 
-app.listen(6969)//donstartdo());
+app.listen(6969,onstartdo());
 
 
 
@@ -135,83 +160,65 @@ function callSQL(query) {
 
 let timeout = 100;
 //Observe file for change
+// Observe file for change
 fs.watch(path, (eventType, filename) => {
-//    console.log(`Event type: ${eventType}`);
     if (filename) {
         clearTimeout(timeout);
         timeout = setTimeout(() => {
-                let x = require(path);
+            let x = require(path);
+            let dataBlock = {
+                Temperature: parseFloat(x.temp.toFixed(1)),
+                Quality: parseFloat(x.CO.toFixed(1)),
+                Humidity: parseFloat(x.AirQuality.toFixed(1)),
+                Date: x.Date,
+                Time: x.Time
+            };
 
-             //console.log(x);
-            //if(x.Temperature && x.Quality && x.Humidity && x.Date && x.Time){
-                let dataBlock = {
-                    Temperature: x.temp,
-                    Quality: x.CO,
-                    Humidity: x.AirQuality,
-                    Date: x.Date,
-                    Time: x.Time
+            console.log("current maximum Temperature: " + highs.temperature);
+            console.log("datablock temperature: " + dataBlock.Temperature);
+            console.log("current maximum Quality: " + highs.quality);
+            console.log("datablock quality: " + dataBlock.Quality);
+            console.log("current maximum Humidity: " + highs.humidity);
+            console.log("datablock humidity: " + dataBlock.Humidity);
+            console.log("===============")
 
-                    
-                }
+            // Update highs
+            if (highs.temperature === undefined || highs.temperature < dataBlock.Temperature) {
+                console.log("Updating highs.temperature to " + dataBlock.Temperature);
+                highs.temperature = dataBlock.Temperature;
+            }
+            if (highs.quality === undefined || highs.quality < dataBlock.Quality) {
+                console.log("Updating highs.quality to " + dataBlock.Quality);
+                highs.quality = dataBlock.Quality;
+            }
+            if (highs.humidity === undefined || highs.humidity < dataBlock.Humidity) {
+                console.log("Updating highs.humidity to " + dataBlock.Humidity);
+                highs.humidity = dataBlock.Humidity;
+            }
 
-                database.push(dataBlock);
-                console.log("got some data");
-                delete require.cache[require.resolve(path)];
+            // Update lows
+            if (lows.temperature === undefined || lows.temperature > dataBlock.Temperature) {
+                console.log("Updating lows.temperature to " + dataBlock.Temperature);
+                lows.temperature = dataBlock.Temperature;
+            }
+            if (lows.quality === undefined || lows.quality > dataBlock.Quality) {
+                console.log("Updating lows.quality to " + dataBlock.Quality);
+                lows.quality = dataBlock.Quality;
+            }
+            if (lows.humidity === undefined || lows.humidity > dataBlock.Humidity) {
+                console.log("Updating lows.humidity to " + dataBlock.Humidity);
+                lows.humidity = dataBlock.Humidity;
+            }
 
-          //  }else{
-            //            console.log("inccoretd datafortmata2")
-           // }
-                
-        }, 100); 
-
+            database.push(dataBlock);
+            delete require.cache[require.resolve(path)];
+        }, 100);
     } else {
         console.log('No');
     }
 });
 
-// // Create a connection to the MySQL database
-// const connection = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'password'
-// });
 
-// // Connect to the database
-// connection.connect((err) => {
-//     if (err) {
-//         console.error('Error connecting to MySQL database: ' + err.stack);
-//         return;
-//     }
-//     console.log('Connected to MySQL database as ID ' + connection.threadId);
-// });
-// connection.query('USE test', (error, resoults, fields) => {
-//     if (!error) {
-//         console.log("should work");
-//     }
-// });
-
-
-// connection.query('SELECT * from ljudje', (error, resoults) => {
-//     if (!error) {
-//         try {
-//             console.log(resoults[1].ime);
-//         } catch {
-//             console.log("i do not have what you seek");
-//         }
-//     } else {
-//         console.log(error)
-//     }
-// });
-
-
-// // Close the connection
-// connection.end((err) => {
-//     if (err) {
-//         console.error('Error closing connection: ' + err.stack);
-//         return;
-//     }
-//     console.log('Connection closed');
-// });
 
 
 

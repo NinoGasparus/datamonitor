@@ -4,7 +4,7 @@ const fs = require('fs');
 
 function alarmOFF(){
     let stop  = true
-    fs.writeFile('/home/pi/Dekstop/buzzer_stop.json', JSON.stringify({ stop: stop }), function(err) {
+    fs.writeFile('/home/pi/Desktop/buzzer_stop.json', JSON.stringify({ stop: stop }), function(err) {
         if (err) {
             console.log("Error writing file:", err);
         } else {
