@@ -42,7 +42,7 @@ tr:nth-child(even) {
 }
 
 tr:nth-child(odd) {
-  background-color: #ffffff; 
+  background-color: var(--white-color); 
 }
 
 .gif-left,
@@ -191,18 +191,20 @@ tr:nth-child(odd) {
   background-color: red;
   display: flex;
   
+  
 }
 #dataranges button{
-  background-color: #333333;
-  color: #ffffff;
+  background-color: var(--first-color);
+  color: var(--white-color);
   font-weight: bold;
   border:none;
   margin-left: 0px;
   margin-right: 0px;
-  width: 12.5%;
+  width:   calc(100%/4)/*12.5%;*/
+
 }
 #dataranges button:hover{
-  color: #333333;
-  background-color: #ffffff;
+  color: var(--first-color);
+  background-color: var(--white-color);
   
 }
