@@ -208,3 +208,20 @@ tr:nth-child(odd) {
   background-color: var(--white-color);
   
 }
+
+
+#alarmButton{
+  margin-top:2vh;
+  width: 100%;
+  padding: 1rem; 
+  cursor: pointer;
+  background-color: var(--first-color); 
+  color: white; 
+  border: none;
+  display: none;
+  border-radius: 0.5rem; 
+  transition: background-color 0.3s; 
+ 
+  background-color: hsl(328, 76%, 40%); 
+}
+

@@ -22,9 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
   function toggleAlarm(){
     fetch(IP+"alarmOFF", {
       method: "POST",
+      headers:{
+        "Content-Type": "application/json",
+      },
+    body: JSON.stringify(token)
   }).then((response) => {
     if(response.ok){
       console.log("ok");
+      document.getElementById("alarmButton").style = " display: none"
       return response.json();
     }else{
       console.log("bad")

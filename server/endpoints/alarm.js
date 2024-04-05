@@ -3,6 +3,7 @@ const fs = require('fs');
 
 
 function alarmOFF(){
+   
     let stop  = true
     fs.writeFile('/home/pi/Desktop/buzzer_stop.json', JSON.stringify({ stop: stop }), function(err) {
         if (err) {

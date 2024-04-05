@@ -15,7 +15,10 @@ setInterval(() => {
            let temp = document.getElementById("b1");
            let humi = document.getElementById("b2");
            let airq = document.getElementById("b3");
-   
+          if(parseFloat(data.temp) >=30){
+            console.log("alarm!!!!!");
+            document.getElementById("alarmButton").style = " display: block"
+          }
            temp.innerText = data.temp;
            humi.innerText = data.humi;
            airq.innerText = data.airq;
@@ -92,7 +95,8 @@ setInterval(() => {
                ]
            } 
          */
-   
+           
+           
    
          allTimeTempAverage.innerText = data.temps[0];
          allTimeTempHigh.innerText = data.temps[1];
@@ -105,7 +109,7 @@ setInterval(() => {
          allTimeAirqAverage.innerText = data.quality[0];
          allTimeAirqHigh.innerText = data.quality[1];
          allTimeAirqLow.innerText = data.quality[2]
-   
+
    
        }) 
      }catch(error){

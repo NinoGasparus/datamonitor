@@ -153,6 +153,7 @@ function login() {
     let user = {
         uname: document.getElementById("uname").value,
         password: document.getElementById("password").value
+
     };
 
     fetch(IP+ "login", {
@@ -176,7 +177,7 @@ function login() {
             throw new Error('Login failed');
         }
     }).then((data) => {
-        let token = {token: data.token, id: data.id};
+        token = {token: data.token, id: data.id};
         console.log(token);
         
         document.getElementById("username").innerText = user.uname;

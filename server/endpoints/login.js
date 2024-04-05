@@ -1,12 +1,12 @@
 function login(req, res){
     try{
-        console.log("we go hteres")
+      //  console.log("we go hteres")
         //     console.log(req.body)
              if(req.body.uname && req.body.password){
                  if(users.find(function(user){return user.uname == req.body.uname && user.password== req.body.password})){
                      //user exist
                      console.log(req.body.uname);
-                     console.log("has login");
+                   //  console.log("has login");
                       let token ={token:makeHash(128), id: aliveTokens.length+1}
                       aliveTokens.push({token:token.token, id:token.id, alive:true})
                       

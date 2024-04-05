@@ -68,8 +68,10 @@ global.highs = {
 global.sums = {
     temperature: 0,
     quality: 0,
-    humidity: 0
+    humidity: 0,
+    count:0
 }
+
 
 global.database = [
 
@@ -120,7 +122,12 @@ app.listen(6969,onstartdo());
 
 
 app.post('/alarmOFF',(req,res) =>{
-    alarmOFF();
+    if(req.body.token){
+        console.log(req.body.token);
+        console.log(aliveTokens);
+    }
+    res.status(200).send();
+   // alarmOFF();
 })
 
 app.post('/add', (req, res) => {
@@ -174,41 +181,57 @@ fs.watch(path, (eventType, filename) => {
                 Time: x.Time
             };
 
-            console.log("current maximum Temperature: " + highs.temperature);
-            console.log("datablock temperature: " + dataBlock.Temperature);
-            console.log("current maximum Quality: " + highs.quality);
-            console.log("datablock quality: " + dataBlock.Quality);
-            console.log("current maximum Humidity: " + highs.humidity);
-            console.log("datablock humidity: " + dataBlock.Humidity);
-            console.log("===============")
+            // console.log("current maximum Temperature: " + highs.temperature);
+            // console.log("datablock temperature: " + dataBlock.Temperature);
+            // console.log("current maximum Quality: " + highs.quality);
+            // console.log("datablock quality: " + dataBlock.Quality);
+            // console.log("current maximum Humidity: " + highs.humidity);
+            // console.log("datablock humidity: " + dataBlock.Humidity);
+            // console.log("===============")
 
             // Update highs
             if (highs.temperature === undefined || highs.temperature < dataBlock.Temperature) {
-                console.log("Updating highs.temperature to " + dataBlock.Temperature);
+               // console.log("Updating highs.temperature to " + dataBlock.Temperature);
                 highs.temperature = dataBlock.Temperature;
             }
             if (highs.quality === undefined || highs.quality < dataBlock.Quality) {
-                console.log("Updating highs.quality to " + dataBlock.Quality);
+              //  console.log("Updating highs.quality to " + dataBlock.Quality);
                 highs.quality = dataBlock.Quality;
             }
             if (highs.humidity === undefined || highs.humidity < dataBlock.Humidity) {
-                console.log("Updating highs.humidity to " + dataBlock.Humidity);
+              //  console.log("Updating highs.humidity to " + dataBlock.Humidity);
                 highs.humidity = dataBlock.Humidity;
             }
 
             // Update lows
             if (lows.temperature === undefined || lows.temperature > dataBlock.Temperature) {
-                console.log("Updating lows.temperature to " + dataBlock.Temperature);
+             //   console.log("Updating lows.temperature to " + dataBlock.Temperature);
                 lows.temperature = dataBlock.Temperature;
             }
             if (lows.quality === undefined || lows.quality > dataBlock.Quality) {
-                console.log("Updating lows.quality to " + dataBlock.Quality);
+               // console.log("Updating lows.quality to " + dataBlock.Quality);
                 lows.quality = dataBlock.Quality;
             }
             if (lows.humidity === undefined || lows.humidity > dataBlock.Humidity) {
-                console.log("Updating lows.humidity to " + dataBlock.Humidity);
+               // console.log("Updating lows.humidity to " + dataBlock.Humidity);
                 lows.humidity = dataBlock.Humidity;
             }
+        
+            sums.temperature += dataBlock.Temperature;
+            sums.quality += dataBlock.Quality;
+            sums.humidity += dataBlock.Humidity;
+            sums.count ++;
+            
+            averages.temperature = parseFloat((sums.temperature/sums.count).toFixed(1));
+            averages.quality = parseFloat((sums.quality/sums.count).toFixed(1));
+            averages.humidity = parseFloat((sums.humidity/sums.count).toFixed(1));
+
+
+
+
+
+
+
 
             database.push(dataBlock);
             delete require.cache[require.resolve(path)];

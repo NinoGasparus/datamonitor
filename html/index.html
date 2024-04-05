@@ -38,7 +38,7 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-        <button onclick="toggleAlarm()">Alarm OFF</button>
+       
           <span class="navbar-toggler-icon"></span>
         </button>
         <div id="username-display" style="color: white; display: none">
@@ -105,7 +105,7 @@
           <p class="lead">
             <span id="current_temp">°C Temp,</span>
             <span id="current_humi">% Humidity,</span>
-            <span id="current_airq">% Air quality</span>
+            <span id="current_airq">% Butane</span>
           </p>
 
           <div class="container">
@@ -135,7 +135,7 @@
             </div>
             <div>
               <canvas id="myChart"></canvas>
-             
+              <button onclick="toggleAlarm()" id="alarmButton">Alarm OFF</button>
             </div>
             <br><br>
             <br><br>
@@ -158,67 +158,69 @@
               <tr>
                 <th scope="col"></th>
                 <th scope="col">All Time</th>
-                <th scope="col">Yesterday</th>
-                <th scope="col">Today</th>
+                <!-- <th scope="col">Yesterday</th> -->
+                <!-- <th scope="col">Today</th> -->
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">Average Temperature</th>
                 <td><span id="allTimeTempAverage"></span>°C</td>
-                <td><span id="yavgtemp"></span>°C</td>
-                <td><span id="tavgtemp"></span>°C</td>
+                <!-- <td><span id="yavgtemp"></span>°C</td>
+                <td><span id="tavgtemp"></span>°C</td> -->
               </tr>
               <tr>
                 <th scope="row">Average Humidity</th>
                 <td><span id="allTimeHumiAverage"></span>%</td>
-                <td><span id="yavghumi"></span>%</td>
-                <td><span id="tavghumi"></span>%</td>
+                <!-- <td><span id="yavghumi"></span>%</td>
+                <td><span id="tavghumi"></span>%</td> -->
               </tr>
               <tr>
                 <th scope="row">Average Air Quality</th>
                 <td><span id="allTimeAirqAverage"></span>%</td>
-                <td><span id="yavghumi"></span>%</td>
-                <td><span id="tavghumi"></span>%</td>
+                <!-- <td><span id="yavghumi"></span>%</td>
+                <td><span id="tavghumi"></span>%</td> -->
               </tr>
               <tr>
                 <th scope="row">Temperature Highs</th>
                 <td><span id="allTimeTempHigh"></span>°C</td>
-                <td><span id="ymaxtemp"></span>°C</td>
-                <td><span id="tmaxtemp"></span>°C</td>
+                <!-- <td><span id="ymaxtemp"></span>°C</td>
+                <td><span id="tmaxtemp"></span>°C</td> -->
               </tr>
               <tr>
                 <th scope="row">Temperature Lows</th>
                 <td><span id="allTimeTempLow"></span>°C</td>
-                <td><span id="ymintemp"></span>°C</td>
-                <td><span id="tmintemp"></span>°C</td>
+                <!-- <td><span id="ymintemp"></span>°C</td>
+                <td><span id="tmintemp"></span>°C</td> -->
               </tr>
               <tr>
                 <th scope="row">Humidity Highs</th>
                 <td><span id="allTimeHumiHigh"></span>%</td>
-                <td><span id="ymaxhumi"></span>%</td>
-                <td><span id="tmaxhumi"></span>%</td>
+                <!-- <td><span id="ymaxhumi"></span>%</td>
+                <td><span id="tmaxhumi"></span>%</td> -->
               </tr>
               <tr>
                 <th scope="row">Humidity Lows</th>
                 <td><span id="allTimeHumiLow"></span>%</td>
-                <td><span id="yminhumi"></span>%</td>
-                <td><span id="tminhumi"></span>%</td>
+                <!-- <td><span id="yminhumi"></span>%</td>
+                <td><span id="tminhumi"></span>%</td> -->
               </tr>
               <tr>
                 <th scope="row">Air quality Highs</th>
                 <td><span id="allTimeAirqHigh"></span>%</td>
-                <td><span id="ymaxhumi"></span>%</td>
-                <td><span id="tmaxhumi"></span>%</td>
+                <!-- <td><span id="ymaxhumi"></span>%</td>
+                <td><span id="tmaxhumi"></span>%</td> -->
               </tr>
               <tr>
                 <th scope="row">Air quality Lows</th>
                 <td><span id="allTimeAirqLow"></span>%</td>
-                <td><span id="yminhumi"></span>%</td>
-                <td><span id="tminhumi"></span>%</td>
+                <!-- <td><span id="yminhumi"></span>%</td>
+                <td><span id="tminhumi"></span>%</td> -->
               </tr>
             </tbody>
           </table>
+          <br>
+          <br><br><br><br><br><br><br><br><br>
           <br />
         </div>
       </div>
