@@ -19,13 +19,20 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
+  //prompt login 
+window.onload =() =>{
+  const loginButton = document.getElementById('login-button');
+  const loginClose = document.getElementById('login-close');
+  const loginContent = document.getElementById('login-content');
+  loginContent.classList.add("show-login");
+}
   function toggleAlarm(){
     fetch(IP+"alarmOFF", {
       method: "POST",
       headers:{
         "Content-Type": "application/json",
       },
-    body: JSON.stringify(token)
+    body: JSON.stringify({token:"bingus"})
   }).then((response) => {
     if(response.ok){
       console.log("ok");

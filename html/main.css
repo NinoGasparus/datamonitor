@@ -225,3 +225,13 @@ tr:nth-child(odd) {
   background-color: hsl(328, 76%, 40%); 
 }
 
+
+#cuserForm{
+ 
+  display: flex;
+  flex-direction: column;
+ 
+  align-items: center;
+  align-self: center;
+  display: none;
+}

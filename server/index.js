@@ -254,10 +254,42 @@ app.post('/readfile', (req, res) => {
 })
 
 app.post('/graph', (req,res)=>{
-    res.status(200).send(database).json();
+    try{
+        if (req.body.token) {
+            const tokenExists = aliveTokens.find(token => token.token === req.body.token);
+
+            if (tokenExists) {
+                res.status(200).send(database).json();
+              
+            } else {
+               
+                console.log("Invalid token");
+                res.status(401).send("Invalid token");
+            }
+        } else {
+           
+            console.log("Token not provided");
+            res.status(400).send("Token not provided");
+        }
+    
+    }catch{
+        res.status(500).send("server problems");
+    }
 })
 
+app.post('/cusers', (req, res) =>{
+  try{
+    console.log(aliveTokens)
+    const tokenExists = aliveTokens.find(token => token.token === req.body.token && token.id == 0);
+    if(tokenExists){
+        console.log("user created by admin")
+    }else{
+        console.log("nope")
+    }
+  }catch{
 
+  }
+})
 function generateData(base, variance, size) {
     const data = [];
     for (let i = 0; i < size; i++) {

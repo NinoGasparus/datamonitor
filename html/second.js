@@ -184,7 +184,46 @@ function login() {
         document.getElementById("username-display").style.display = "block";
 
         document.getElementById("login-content").style.display = "none";
+        if(user.uname == 'admin'){
+        document.getElementById("cuserForm").style.display = "flex";
+        }
     }).catch((error) => {
         console.error('Login error:', error);
     });
 }
+
+
+
+
+function createUser(){
+    try{
+    let packet = {
+        uname: document.getElementById("cusername").value,
+        pass: document.getElementById("cuserpass").value,
+        token : token
+    }
+    console.log(packet);
+
+
+
+    fetch(IP+ "cusers", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(packet)
+    }).then((response) =>{
+        if(response.ok){
+            document.getElementById("cuserStatus").innerText = "Sucess"
+        }else{
+            document.getElementById("cuserStatus").innerText = "Something went wrong"
+        }
+    })
+    }catch{
+        document.getElementById("cuserStatus").innerText = "Something went wrong"
+    }
+    
+}
+
+
+

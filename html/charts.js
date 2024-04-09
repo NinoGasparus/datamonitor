@@ -37,7 +37,7 @@ const myChart = new Chart(ctx, {
          cubicInterpolationMode: "monotone",
       },
       {
-        label: "Humidity", 
+        label: "CO2", 
         data: chart2,
         fill: false,
         borderColor: "#5FAD56",
@@ -45,7 +45,7 @@ const myChart = new Chart(ctx, {
         cubicInterpolationMode: "monotone",
       },
       {
-        label: "AirQuality", 
+        label: "Gas", 
         data: chart3,
         fill: false,
         borderColor: "#8AE1FC",
@@ -76,11 +76,15 @@ const myChart = new Chart(ctx, {
 function fetchData() {
   return fetch(IP + "graph", {
     method: "POST",
+    headers:{
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(token)
   }).then((response) => {
     if (response.ok) {
       return response.json();
     } else {
-      throw new Error("Failed to fetch data");
+      return false;
     }
   });
 }
@@ -88,6 +92,9 @@ function fetchData() {
 function updateChart() {
   fetchData()
     .then((data) => {
+      if(data == false){
+        return;
+      }
       let tmp = [];
       chart1 = [];
       chart2 = [];

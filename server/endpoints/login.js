@@ -18,7 +18,7 @@ function login(req, res){
                                      });//first time it will be alive and it will than redo after 5min and seeing it false removes the user
                                      if(tokenToRemove.alive){
                                          tokenToRemove.alive = false;
-                                         setTimeout(arguments.callee, 1000 * 5 );
+                                         setTimeout(arguments.callee, 1000 * 5 * 60 );
                                          return;
                                      }
                                      let indexToRemove = aliveTokens.indexOf(tokenToRemove);
